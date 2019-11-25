@@ -7,9 +7,9 @@ public class BoundEvent : MonoBehaviour {
 
     private Vector2 balloonPosition;
 
-    void Update()
+    void Start()
     {
-        balloonPosition = gameObject.GetComponent<BalloonMovement>().balloonPosition;
+        //balloonPosition = gameObject.GetComponent<BalloonMovement>().balloonPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

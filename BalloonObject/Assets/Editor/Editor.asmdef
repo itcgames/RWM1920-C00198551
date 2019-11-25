@@ -1,8 +1,0 @@
-{
-    "name": "Editor",
-    "references": [
-        "BalloonMovement"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": []
-}
