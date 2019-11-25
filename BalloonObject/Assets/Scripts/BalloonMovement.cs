@@ -5,6 +5,7 @@ using UnityEngine;
 public class BalloonMovement : MonoBehaviour {
 
     public float force;
+    public Vector2 balloonPosition;
 
     private Rigidbody2D rb2d;
     private float moveVertical = 0;
@@ -29,7 +30,9 @@ public class BalloonMovement : MonoBehaviour {
 
         Vector2 movement = new Vector2(0, moveVertical);
 
-        rb2d.AddForce(movement * Time.deltaTime); // 
+        rb2d.AddForce(movement * Time.deltaTime);
+
+        balloonPosition = transform.position;
     }
 
     // Update is called once per frame
