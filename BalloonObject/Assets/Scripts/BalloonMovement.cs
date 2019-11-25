@@ -17,7 +17,7 @@ public class BalloonMovement : MonoBehaviour {
 
     public static float getVelocity(float force, float mass)
     {
-        float acceleration = (force - mass * 10) / mass; // force = mass * acceleration
+        float acceleration = (force - mass) / mass; // force = mass * acceleration
 
         float velocity = acceleration * Time.deltaTime; // velocity = acceleration * time
         
@@ -26,11 +26,12 @@ public class BalloonMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
-        moveVertical += getVelocity(force, rb2d.mass);
+        moveVertical = getVelocity(force, rb2d.mass);
 
+        Debug.Log(moveVertical);
         Vector2 movement = new Vector2(0, moveVertical);
 
-        rb2d.AddForce(movement * Time.deltaTime);
+        rb2d.AddForce(movement);
 
         balloonPosition = transform.position;
     }

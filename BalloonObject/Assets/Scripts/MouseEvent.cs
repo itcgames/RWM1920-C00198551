@@ -19,6 +19,10 @@ public class MouseEvent : MonoBehaviour {
     {
         deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
         deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
+        if (gameObject.tag == "wire")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnMouseDrag()
