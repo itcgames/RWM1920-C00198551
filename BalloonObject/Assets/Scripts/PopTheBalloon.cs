@@ -5,8 +5,8 @@ using UnityEngine;
 public class PopTheBalloon : MonoBehaviour
 {
     private bool m_explod = false;
-    private float m_popRange = 3.0f;
-    private float m_popForce = 10.0f;
+    public float m_popRange = 3.0f;
+    public float m_popForce = 10.0f;
 
     private AudioSource m_popingSound;
     private Animator m_animation;
