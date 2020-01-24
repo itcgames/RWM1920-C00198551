@@ -32,4 +32,8 @@ public class CarryCheck : MonoBehaviour
         }    
     }
 
+    public bool onloadCheck()
+    {
+        return onload;
+    }
 }

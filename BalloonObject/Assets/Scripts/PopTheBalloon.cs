@@ -25,8 +25,8 @@ public class PopTheBalloon : MonoBehaviour
         {
             this.gameObject.AddComponent<CircleCollider2D>();
             this.gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
-            this.gameObject.GetComponent<CircleCollider2D>().radius += m_popRange * (Time.deltaTime * 3);
-
+            this.gameObject.GetComponent<CircleCollider2D>().radius += m_popRange * (Time.deltaTime);
+            
         }
     }
 
@@ -34,6 +34,7 @@ public class PopTheBalloon : MonoBehaviour
     {
         if (m_explod)
         {
+            m_animation.SetBool("Popping", true);
             if (this.gameObject.GetComponent<CircleCollider2D>().radius >= m_popRange)
             {
                 Destroy(this.gameObject);
@@ -53,9 +54,7 @@ public class PopTheBalloon : MonoBehaviour
 
         if (m_explod)
         {
-            Vector2 targetPos = collision.gameObject.transform.position;
-            Vector2 balloonPos = gameObject.transform.position;
-            Vector2 blastForce = m_popForce * (targetPos - balloonPos);
+            Vector2 blastForce = getForce(collision.gameObject.transform.position, gameObject.transform.position);
 
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(blastForce);
 
@@ -63,4 +62,14 @@ public class PopTheBalloon : MonoBehaviour
 
     }
 
+    public bool m_explodCheck()
+    {
+        return m_explod;
+    }
+
+    public Vector2 getForce(Vector2 targetPos, Vector2 balloonPos)
+    {
+        Vector2 blastForce = m_popForce * (targetPos - balloonPos);
+        return blastForce;
+    }
 }
