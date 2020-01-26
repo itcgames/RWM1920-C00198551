@@ -8,6 +8,14 @@ namespace Tests
 {
     public class BalloonMovementText
     {
+        private GameObject balloonObj;
+
+        [SetUp]
+        public void Setup()
+        {
+            balloonObj = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/balloon"));
+        }
+
         // A Test behaves as an ordinary method
         [Test]
         public void BalloonMovementTextSimplePasses()
@@ -38,19 +46,23 @@ namespace Tests
         }
 
         [Test]
-        public void BalloonAnimationPasses()
+        public IEnumerator BalloonPopSoundPasses()
         {
             // Use the Assert class to test conditions
-            
-            PopTheBalloon test = new PopTheBalloon();
 
-            bool explod = test.m_explodCheck();
-            bool animation = test.GetComponent<Animator>().GetBool("Popping");
-
-            Assert.AreEqual(animation, explod);
-
+            balloonObj.GetComponent<PopTheBalloon>().setExplod(true);
+            yield return new WaitForSeconds(1);
+            Assert.True(balloonObj.GetComponent<AudioSource>().isPlaying);
         }
 
+        public IEnumerator BalloonPopAnimationPasses()
+        {
+            // Use the Assert class to test conditions
+
+            balloonObj.GetComponent<PopTheBalloon>().setExplod(true);
+            yield return new WaitForSeconds(1);
+            Assert.True(balloonObj.gameObject.GetComponent<Animator>().GetBool("Popping"));
+        }
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // `yield return null;` to skip a frame.

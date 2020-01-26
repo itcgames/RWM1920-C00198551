@@ -35,6 +35,7 @@ public class PopTheBalloon : MonoBehaviour
         if (m_explod)
         {
             m_animation.SetBool("Popping", true);
+            m_popingSound.Play();
             if (this.gameObject.GetComponent<CircleCollider2D>().radius >= m_popRange)
             {
                 Destroy(this.gameObject);
@@ -47,7 +48,7 @@ public class PopTheBalloon : MonoBehaviour
 
         if (collision.gameObject.CompareTag("sharp"))
         {
-            m_popingSound.Play();
+
             m_animation.SetBool("Popping", true);
             m_explod = true;
         }
@@ -65,6 +66,11 @@ public class PopTheBalloon : MonoBehaviour
     public bool m_explodCheck()
     {
         return m_explod;
+    }
+
+    public void setExplod(bool explod)
+    {
+        m_explod = explod;
     }
 
     public Vector2 getForce(Vector2 targetPos, Vector2 balloonPos)
